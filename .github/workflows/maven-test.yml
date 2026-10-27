@@ -57,3 +57,6 @@ jobs:
       # Build & Test
       - name: Build & Test with Maven
         run: mvn -B integration-test
+
+      - name: Verify Forms lint in generated projects
+        run: node src/test/resources/verify-forms-lint.cjs
