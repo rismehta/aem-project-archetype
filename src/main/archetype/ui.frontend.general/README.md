@@ -34,7 +34,7 @@ ${hash}${hash}${hash} Forms compatibility lint
 
 `npm run prod` runs `npm run lint:forms` before Webpack. The normal Maven build
 therefore runs this check automatically, including full-stack Cloud Manager builds
-that build this module. Forms-enabled general frontend builds use Node.js 22.
+that build this module. Forms lint uses the project's existing Node.js version.
 
 The check uses `@aemforms/eslint-plugin` 1.0.25 with
 `custom-fn-correctness` at warning severity. Warnings do not fail the build;

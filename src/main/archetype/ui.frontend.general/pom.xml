@@ -45,12 +45,6 @@
             <plugin>
                 <groupId>com.github.eirslett</groupId>
                 <artifactId>frontend-maven-plugin</artifactId>
-#if ( $includeForms == "y" || $includeFormsenrollment == "y" || $includeFormscommunications == "y" || $includeFormsheadless == "y" )
-                <configuration>
-                    <nodeVersion>v22.22.0</nodeVersion>
-                    <npmVersion>10.9.4</npmVersion>
-                </configuration>
-#end
                 <executions>
                     <execution>
                         <id>npm run prod</id>
