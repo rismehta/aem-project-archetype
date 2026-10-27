@@ -36,7 +36,7 @@ ${hash}${hash}${hash} Forms compatibility lint
 therefore runs this check automatically, including full-stack Cloud Manager builds
 that build this module. Forms lint uses the project's existing Node.js version.
 
-The check uses `@aemforms/eslint-plugin` 1.0.25 with
+The check uses `@aemforms/eslint-plugin` 1.0.26 with
 `custom-fn-correctness` at warning severity. Warnings do not fail the build;
 parsing, configuration and execution errors do. Existing Webpack lint remains unchanged.
 This separate compatibility pass ignores inline ESLint directives, so comments for

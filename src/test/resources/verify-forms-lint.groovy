@@ -23,7 +23,7 @@ fixtures.each { fixture ->
         return
     }
     assert manifest.scripts.prod.startsWith('npm run lint:forms && ')
-    assert manifest.devDependencies['@aemforms/eslint-plugin'] == '1.0.25'
+    assert manifest.devDependencies['@aemforms/eslint-plugin'] == '1.0.26'
     assert new File(frontend, 'target/forms-eslint.json').exists()
     def node = new File(frontend, System.getProperty('os.name').startsWith('Windows') ?
         'node/node.exe' : 'node/node')
