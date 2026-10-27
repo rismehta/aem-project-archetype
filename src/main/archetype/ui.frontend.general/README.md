@@ -39,6 +39,9 @@ that build this module. Forms-enabled general frontend builds use Node.js 22.
 The check uses `@aemforms/eslint-plugin` 1.0.25 with
 `custom-fn-correctness` at warning severity. Warnings do not fail the build;
 parsing, configuration and execution errors do. Existing Webpack lint remains unchanged.
+This separate compatibility pass ignores inline ESLint directives, so comments for
+unrelated style plug-ins do not introduce errors or suppress the compatibility check.
+Customize Forms rules and exclusions through `.forms-eslint.cjs`.
 This rule also reports imperative validation and computed-value updates; review
 these recommendations in the context of authored rules and intentional one-shot actions.
 

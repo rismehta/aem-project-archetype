@@ -33,6 +33,7 @@ fixtures.each { fixture ->
     assert !source.exists() && !ignored.exists()
     try {
         source.text = '''
+/* eslint-disable import/no-extraneous-dependencies */
 function checkPrivateAccess() {
     const form = guideBridge.getFormModel();
     return form._options;

@@ -12,6 +12,7 @@ const config = require(path.join(frontend, '.forms-eslint.cjs'));
 const eslint = new ESLint({
     cwd: project,
     useEslintrc: false,
+    allowInlineConfig: false,
     errorOnUnmatchedPattern: false,
     overrideConfig: config,
     plugins: { '@aemforms': formsPlugin }
