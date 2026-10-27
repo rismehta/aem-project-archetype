@@ -95,8 +95,7 @@ buildContentSkeleton(uiContentPackage, uiAppsPackage, singleCountry, appId, lang
 cleanUpFrontendModule(frontendModule, rootPom, rootDir)
 if (frontendModule == "general" && includeForms != "y" && includeFormsenrollment != "y"
         && includeFormscommunications != "y" && includeFormsheadless != "y") {
-    assert new File(rootDir, "ui.frontend/.forms-eslint.cjs").delete()
-    assert new File(rootDir, "ui.frontend/scripts/lint-forms.mjs").delete()
+    assert new File(rootDir, "ui.frontend/eslint.config.js").delete()
 }
 
 if (includeDispatcherConfig == "n") {
