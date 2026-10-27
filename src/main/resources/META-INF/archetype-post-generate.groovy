@@ -93,6 +93,11 @@ if (aemVersion == "cloud") {
 
 buildContentSkeleton(uiContentPackage, uiAppsPackage, singleCountry, appId, language, country)
 cleanUpFrontendModule(frontendModule, rootPom, rootDir)
+if (frontendModule == "general" && includeForms != "y" && includeFormsenrollment != "y"
+        && includeFormscommunications != "y" && includeFormsheadless != "y") {
+    assert new File(rootDir, "ui.frontend/.forms-eslint.cjs").delete()
+    assert new File(rootDir, "ui.frontend/scripts/lint-forms.mjs").delete()
+}
 
 if (includeDispatcherConfig == "n") {
     // remove the unneeded config file

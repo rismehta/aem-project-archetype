@@ -11,7 +11,12 @@
   "license": "SEE LICENSE IN LICENSE.txt",
   "scripts": {
     "dev": "webpack --env dev --config ./webpack.dev.js && clientlib --verbose",
+#if ( $includeForms == "y" || $includeFormsenrollment == "y" || $includeFormscommunications == "y" || $includeFormsheadless == "y" )
+    "prod": "npm run lint:forms && webpack --config ./webpack.prod.js && clientlib --verbose",
+    "lint:forms": "node scripts/lint-forms.mjs",
+#else
     "prod": "webpack --config ./webpack.prod.js && clientlib --verbose",
+#end
     "start": "webpack-dev-server --open --config ./webpack.dev.js",
     "sync": "aemsync -d -p ../ui.apps/src/main/content",
     "chokidar": "chokidar -c \"clientlib\" ./dist",
@@ -19,6 +24,9 @@
     "watch": "npm-run-all --parallel start chokidar aemsyncro"
   },
   "devDependencies": {
+#if ( $includeForms == "y" || $includeFormsenrollment == "y" || $includeFormscommunications == "y" || $includeFormsheadless == "y" )
+    "@aemforms/eslint-plugin": "1.0.25",
+#end
     "@babel/core": "^7.0.0",
     "@babel/plugin-proposal-class-properties": "^7.3.3",
     "@babel/plugin-proposal-object-rest-spread": "^7.3.2",
@@ -35,7 +43,11 @@
     "css-loader": "^6.5.1",
     "css-minimizer-webpack-plugin": "^3.2.0",
     "cssnano": "^5.0.12",
+#if ( $includeForms == "y" || $includeFormsenrollment == "y" || $includeFormscommunications == "y" || $includeFormsheadless == "y" )
+    "eslint": "8.57.1",
+#else
     "eslint": "^8.4.1",
+#end
     "eslint-webpack-plugin": "^3.1.1",
     "glob-import-loader": "^1.2.0",
     "html-webpack-plugin": "^5.5.0",

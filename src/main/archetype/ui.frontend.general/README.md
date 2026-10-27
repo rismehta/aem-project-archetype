@@ -29,6 +29,37 @@ The following npm scripts drive the frontend workflow:
 * `npm run prod` - Full build of client libraries build with JS optimization enabled (tree shaking, etc), source maps disabled and CSS optimization enabled.
 * `npm run start` - Starts a static webpack development server for local development with minimal dependencies on AEM.
 
+#if ( $includeForms == "y" || $includeFormsenrollment == "y" || $includeFormscommunications == "y" || $includeFormsheadless == "y" )
+${hash}${hash}${hash} Forms compatibility lint
+
+`npm run prod` runs `npm run lint:forms` before Webpack. The normal Maven build
+therefore runs this check automatically, including full-stack Cloud Manager builds
+that build this module. Forms-enabled general frontend builds use Node.js 22.
+
+The check uses `@aemforms/eslint-plugin` 1.0.25 with
+`custom-fn-correctness` at warning severity. Warnings do not fail the build;
+parsing, configuration and execution errors do. Existing Webpack lint remains unchanged.
+This rule also reports imperative validation and computed-value updates; review
+these recommendations in the context of authored rules and intentional one-shot actions.
+
+`scripts/lint-forms.mjs` explicitly scans frontend JavaScript and standalone
+clientlibs in `ui.apps` and `ui.apps.*`, including files not imported by Webpack.
+Configure additional paths in that script and exclusions/rules in `.forms-eslint.cjs`.
+The archetype's generated site/dependency clientlibs and bundles are excluded.
+Add project-specific exclusions for additional generated or third-party source;
+do not exclude similarly named folders that contain authored code.
+Headless portability and architectural rules are not enabled by default.
+
+Diagnostics appear in build logs, and JSON is written to
+`ui.frontend/target/forms-eslint.json`. Retaining this file outside the build requires
+explicit CI artifact handling; it is not a native Cloud Manager quality-gate report.
+
+This integration requires `frontendModule=general`. It does not add automatic
+lint to projects generated with `frontendModule=none` or to the separate headless
+frontend build. Existing projects must adopt the npm dependency, runner,
+configuration and production-script hook; updating the archetype does not modify them.
+
+#end
 ${hash}${hash}${hash} General
 
 The ui.frontend module compiles the code under the `ui.frontend/src` folder and outputs the compiled CSS and JS, and any resources beneath a folder named `ui.frontend/dist`.
